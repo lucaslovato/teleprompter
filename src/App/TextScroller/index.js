@@ -9,6 +9,7 @@ export default class TextScroller extends PureComponent {
         text: PropTypes.string,
         fontSize: PropTypes.string,
         flipX: PropTypes.bool,
+        flipY: PropTypes.bool,
         width: PropTypes.string,
         height: PropTypes.string,
         scrollDurationLine: PropTypes.number
@@ -18,6 +19,7 @@ export default class TextScroller extends PureComponent {
         text: '',
         fontSize: 'xx-large',
         flipX: false,
+        flipY: false,
         width: 'auto',
         height: 'auto',
         scrollDurationLine: 1000
@@ -43,9 +45,9 @@ export default class TextScroller extends PureComponent {
     }
 
     render() {
-        const {text, fontSize, flipX, width, height} = this.props;
+        const {text, fontSize, flipX, flipY, width, height} = this.props;
 
-        return <div className={classNames(styles.displayTextContainer, {[styles.flipX]: flipX})}
+        return <div className={classNames(styles.displayTextContainer, {[styles.flipX]: flipX, [styles.flipY]: flipY})}
                     style={{width: width, height: height}}>
             <p ref={this.refDisplayText}
                className={styles.displayText}

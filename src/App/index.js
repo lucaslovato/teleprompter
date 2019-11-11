@@ -3,7 +3,7 @@ import screenfull from 'screenfull'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {faGithub} from '@fortawesome/fontawesome-free-brands'
 import {Button, FormControlLabel, Switch, TextField} from '@material-ui/core'
-import {Description, FastForward, Fullscreen, SwapHoriz, TextFields} from '@material-ui/icons'
+import {Description, FastForward, Fullscreen, SwapHoriz, TextFields, SwapVert} from '@material-ui/icons'
 
 import styles from './App.module.css'
 import Slider from './Slider'
@@ -30,6 +30,9 @@ export default class App extends Component {
     onFlipXSwitchChange = (event) => {
         this.setState({flipX: event.target.checked})
     };
+    onFlipYSwitchChange = (event) => {
+        this.setState({flipY: event.target.checked})
+    };
 
     constructor(props) {
         super(props);
@@ -37,7 +40,8 @@ export default class App extends Component {
             text: '',
             fontSize: .5,
             scrollSpeed: .5,
-            flipX: false
+            flipX: false,
+            flipY: false
         };
 
         this.refTextScroller = React.createRef();
@@ -45,7 +49,7 @@ export default class App extends Component {
     }
 
     render() {
-        const {text, fontSize, scrollSpeed, flipX} = this.state;
+        const {text, fontSize, scrollSpeed, flipX, flipY} = this.state;
 
         return <div ref={this.refApp} className={styles.app}>
             <header className={styles.header}>
@@ -65,6 +69,9 @@ export default class App extends Component {
                         control={<Slider min={0} max={1} value={fontSize} onChange={this.onFontSizeInputChange}/>}
                         label={<TextFields style={{transform: 'scaleX(-1)'}}/>}/>
                     <FormControlLabel
+                        control={<Switch onChange={this.onFlipYSwitchChange}/>}
+                        label={<SwapVert/>}/>
+                    <FormControlLabel
                         control={<Switch onChange={this.onFlipXSwitchChange}/>}
                         label={<SwapHoriz/>}/>
                     <Button onClick={this.onStartButtonClick} variant='raised'>Start</Button>
@@ -82,6 +89,7 @@ export default class App extends Component {
                 text={text}
                 fontSize={`${(6 * fontSize) + 2}em`}
                 flipX={flipX}
+                flipY={flipY}
                 scrollDurationLine={8000 * (1 - scrollSpeed) + 192}/>
         </div>
     }
