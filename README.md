@@ -1,2 +1,3 @@
 # teleprompter
-BA teleprompter following http://kevinhwang.github.io/teleprompter as scaffold
+
+BA teleprompter following https://github.com/kevinhwang/teleprompter as scaffold
